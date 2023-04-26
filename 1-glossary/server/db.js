@@ -4,3 +4,29 @@ const mongoose = require("mongoose");
 // 2. Set up any schema and models needed by the app
 // 3. Export the models
 // 4. Import the models into any modules that need them
+
+mongoose.connect('mongodb://localhost/fetcher');
+
+const wordSchema = mongoose.Schema({
+  term: String,
+  definition: String
+});
+
+const Word = mongoose.model('Word', wordSchema);
+
+const getAll = (word) => {
+  return Word.find({})
+    .catch(err => console.error(err));
+};
+
+const save = (word) => {
+  return Word.create(word)
+    .then(word => {
+      console.log(word);
+      return word;
+    })
+    .catch(err => console.error(err));
+};
+
+module.exports.save = save;
+module.exports.getAll = getAll;
