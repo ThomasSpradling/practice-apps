@@ -1,12 +1,12 @@
 import React from 'react';
 
-const WordListEntry = ({ word }) => {
+const WordListEntry = ({ word, handleDelete, handleEditClick, handleDeleteClick }) => {
   return (
     <div className="item">
       <strong className="term">{word.term}</strong>
       <span className="definition">{word.definition}</span>
-      <button>Edit</button>
-      <button>Delete</button>
+      <button onClick={(e) => handleEditClick(word)}>Edit</button>
+      <button onClick={(e) => handleDeleteClick(word)}>Delete</button>
     </div>
   );
 };

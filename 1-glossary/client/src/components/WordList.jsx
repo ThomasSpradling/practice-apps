@@ -1,13 +1,12 @@
 import React from 'react';
 import WordListEntry from './WordListEntry.jsx';
 
-const WordList = ({ words, searchText }) => {
+const WordList = ({ words, searchText, handleEditClick, handleDeleteClick }) => {
   const displayList = words
     .filter(word => {
-      console.log(word, searchText);
-      return word.term.startsWith(searchText);
+      return word.term.toLowerCase().startsWith(searchText.toLowerCase());
     })
-    .map(word => <WordListEntry key={word._id} word={word} />);
+    .map(word => <WordListEntry key={word._id} word={word} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} />);
 
 
   return (

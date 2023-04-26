@@ -14,9 +14,17 @@ const wordSchema = mongoose.Schema({
 
 const Word = mongoose.model('Word', wordSchema);
 
-const getAll = (word) => {
+const getAll = () => {
   return Word.find({})
     .catch(err => console.error(err));
+};
+
+const update = (id, word) => {
+  return Word.findByIdAndUpdate(id, word);
+};
+
+const del = (id) => {
+  return Word.findByIdAndDelete(id);
 };
 
 const save = (word) => {
@@ -30,3 +38,5 @@ const save = (word) => {
 
 module.exports.save = save;
 module.exports.getAll = getAll;
+module.exports.del = del;
+module.exports.update = update;
